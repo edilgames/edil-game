@@ -1,0 +1,378 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4fff6; /* Clean White/Light Background */
+    color: #333333;            /* Dark Text for Readability */
+    padding-bottom: 75px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-bottom: 2px solid #007bff; /* Blue Accent */
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff; /* Blue Logo */
+}
+
+.search-box input {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    width: 140px;
+    outline: none;
+}
+
+.nav-buttons button, .user-panel button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.user-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+}
+
+.profile-container {
+    background: #e9ecef;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #007bff; /* Blue Border */
+}
+
+.profile-icon {
+    font-size: 18px;
+}
+
+.btn-blue {
+    background-color: #007bff; /* Blue Button */
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.btn-blue:hover {
+    background-color: #0056b3;
+}
+
+.btn-red {
+    background-color: #dc3545;
+    color: white;
+}
+
+.banner-slider {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    background: #e9ecef;
+}
+
+.banner-slider .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-slider .slide.active {
+    display: block;
+}
+
+.banner-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+}
+
+.scrolling-games-bar {
+    background: #ffffff;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.scrolling-games-bar h3 {
+    color: #007bff;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 5px 0;
+    scroll-behavior: smooth;
+}
+
+.scroll-item {
+    min-width: 70px;
+    text-align: center;
+    cursor: pointer;
+    background: #f8f9fa;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.scroll-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.scroll-item p {
+    font-size: 11px;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bottom-nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    border-top: 2px solid #ddd;
+    z-index: 950;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+}
+
+.bottom-nav-bar button {
+    background: none;
+    border: none;
+    color: #666;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.bottom-nav-bar button.active-tab {
+    color: #007bff; /* Active tab blue */
+}
+
+.main-container {
+    padding: 15px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active-section {
+    display: block;
+}
+
+.games-grid, .sports-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.game-card, .sport-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.game-card img {
+    width: 100%;
+    height: 85px;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #f8f9fa;
+}
+
+.game-card p, .sport-card p {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sport-card {
+    background: #eef2f7;
+    border-left: 4px solid #007bff;
+    text-align: left;
+    padding: 10px;
+}
+
+.deposit-page-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.deposit-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.telebirr-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #333;
+}
+
+.tele-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #eee;
+}
+
+.sub-label {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.copy-section {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0 15px 0;
+}
+
+.copy-section input {
+    flex: 1;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px solid #ccc;
+    color: #333;
+    border-radius: 4px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px solid #ccc;
+    color: #333;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 90%;
+    max-width: 380px;
+    border-radius: 8px;
+    position: relative;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background: #f8f9fa;
+    border: 1px solid #ccc;
+    color: #333;
+    border-radius: 4px;
+}
+
+.error-text {
+    color: #dc3545;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    position: fixed;
+    right: 15px;
+    top: 60px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    width: 240px;
+    z-index: 2500;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+.dropdown-menu a:hover {
+    background: #f1f1f1;
+}
