@@ -7,7 +7,28 @@ const gameNames = [
     ...Array.from({length: 61}, (_, i) => `Cini Game ${i + 20}`)
 ];
 
-const sportNames = Array.from({length: 50}, (_, i) => `Match ${i + 1}: Team A vs Team B`);
+const sportLeagues = [
+    "⚽ Armenia. Premier League", 
+    "🏀 Israel. Super League", 
+    "🎾 WTA 250. Chennai. Hard. India", 
+    "⚽ English Premier League", 
+    "⚽ Spanish La Liga"
+];
+
+const sportMatches = Array.from({length: 50}, (_, i) => {
+    let league = sportLeagues[i % sportLeagues.length];
+    return {
+        id: i + 1,
+        league: league,
+        team1: i % 2 === 0 ? "FC Van" : "Hapoel Holon",
+        team2: i % 2 === 0 ? "Pyunik" : "Hapoel Galil Elyon",
+        score1: Math.floor(Math.random() * 3),
+        score2: Math.floor(Math.random() * 3),
+        w1: (1.5 + Math.random() * 5).toFixed(2),
+        x: (3.0 + Math.random() * 2).toFixed(2),
+        w2: (1.2 + Math.random() * 2).toFixed(2)
+    };
+});
 
 window.onload = function() {
     loadGames();
@@ -18,6 +39,7 @@ window.onload = function() {
 
 function loadGames() {
     const grid = document.getElementById('gamesGrid');
+    if(!grid) return;
     grid.innerHTML = '';
     
     gameNames.forEach((name, index) => {
@@ -38,13 +60,29 @@ function loadSports() {
     if(!grid) return;
     grid.innerHTML = '';
     
-    sportNames.forEach((match, index) => {
+    sportMatches.forEach((match) => {
         let card = document.createElement('div');
-        card.className = 'sport-card';
-        card.onclick = () => openGame(match);
+        card.className = 'sport-match-card';
         card.innerHTML = `
-            <p>⚽ ${match}</p>
-            <span style="font-size: 11px; color: #555;">Odds: 1.85 | 3.40 | 2.10</span>
+            <div class="match-league">${match.league}</div>
+            <div class="match-teams">
+                <div style="display:flex; justify-content:space-between;"><span>${match.team1}</span> <span><b>${match.score1}</b></span></div>
+                <div style="display:flex; justify-content:space-between;"><span>${match.team2}</span> <span><b>${match.score2}</b></span></div>
+            </div>
+            <div class="match-odds-grid">
+                <div class="odd-box" onclick="openGame('${match.team1} vs ${match.team2}')">
+                    <span>W1</span>
+                    <strong>${match.w1}</strong>
+                </div>
+                <div class="odd-box" onclick="openGame('${match.team1} vs ${match.team2}')">
+                    <span>X</span>
+                    <strong>${match.x}</strong>
+                </div>
+                <div class="odd-box" onclick="openGame('${match.team1} vs ${match.team2}')">
+                    <span>W2</span>
+                    <strong>${match.w2}</strong>
+                </div>
+            </div>
         `;
         grid.appendChild(card);
     });
@@ -52,6 +90,7 @@ function loadSports() {
 
 function loadScrollingGames() {
     const scrollBar = document.getElementById('scrollingGames');
+    if(!scrollBar) return;
     scrollBar.innerHTML = '';
     for(let i=0; i<10; i++) {
         let item = document.createElement('div');
@@ -72,7 +111,8 @@ function startBannerSlider() {
     setInterval(() => {
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
+        slides[currentSlide].classList.
+          add('active');
     }, 3500);
 }
 
@@ -98,21 +138,25 @@ function switchTab(tabId) {
     let bannerSec = document.getElementById('mainBannerSection');
     let scrollSec = document.getElementById('mainScrollSection');
     
-    if(tabId === 'depositTab') {
-        bannerSec.style.display = 'none';
-        scrollSec.style.display = 'none';
+    if(tabId === 'depositTab' || tabId === 'liveTvTab') {
+        if(bannerSec) bannerSec.style.display = 'none';
+        if(scrollSec) scrollSec.style.display = 'none';
     } else {
-        bannerSec.style.display = 'block';
-        scrollSec.style.display = 'block';
+        if(bannerSec) bannerSec.style.display = 'block';
+        if(scrollSec) scrollSec.style.display = 'block';
+    }
+
+    if(tabId === 'liveTvTab') {
+        alert("LiveTV ገጽ በቅርብ ቀን ይጀመራል!");
+        tabId = 'sportTab';
     }
 
     document.getElementById(tabId).classList.add('active-section');
     
-    if(tabId === 'gamesTab') document.getElementById('tabBtnGames').classList.add('active-tab');
     if(tabId === 'sportTab') document.getElementById('tabBtnSport').classList.add('active-tab');
+    if(tabId === 'gamesTab') document.getElementById('tabBtnGames').classList.add('active-tab');
     if(tabId === 'depositTab') document.getElementById('tabBtnDeposit').classList.add('active-tab');
-    if(tabId === 'kenoTab') document.
-    getElementById('tabBtnKeno').classList.add('active-tab');
+    if(tabId === 'kenoTab') document.getElementById('tabBtnKeno').classList.add('active-tab');
 }
 
 function openModal(modalId) {
@@ -130,7 +174,7 @@ function toggleProfileMenu() {
 function registerUser() {
     let phone = document.getElementById('regPhone').value;
     if(!phone) { alert("እባክዎ ስልክ ቁጥር ያስገቡ"); return; }
-    alert("well come!");
+    alert("በሰላም ተመዝግበዋል!");
     closeModal('registerModal');
     loginSuccess(phone);
 }
@@ -138,7 +182,7 @@ function registerUser() {
 function loginUser() {
     let phone = document.getElementById('loginPhone').value;
     if(!phone) { alert("እባክዎ ስልክ ቁጥር ያስገቡ"); return; }
-    alert("well come back!");
+    alert("በሰላም ገብተዋል!");
     closeModal('loginModal');
     loginSuccess(phone);
 }
